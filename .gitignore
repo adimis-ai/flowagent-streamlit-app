@@ -1,0 +1,7 @@
+/.env
+/.venv
+/docs
+/tools
+/__pycache__
+/etc
+/workflow_tests
