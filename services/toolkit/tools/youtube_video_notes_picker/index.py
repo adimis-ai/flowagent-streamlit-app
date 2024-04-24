@@ -53,7 +53,7 @@ class YoutubeVideosNotesPicker:
                     youtube_result.youtube_url,
                     add_video_info=True,
                 )
-                .load_and_split()
+                .load()
             )
 
             self.loaded_video_docs.extend(video_docs)
@@ -65,7 +65,8 @@ class YoutubeVideosNotesPicker:
                 video_counter += 1
 
             notes_content = self._generate_notes()
+            raw_content = "\n\n".join(self._get_splitted_contents())
             section_response = SubSectionResponse(
-                title=title, content=notes_content, video_url=youtube_result.youtube_url
+                title=title, content=notes_content, video_url=youtube_result.youtube_url, raw_content=raw_content
             )
             yield section_response

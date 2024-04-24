@@ -13,11 +13,13 @@ from services.toolkit.tools.youtube_search.interface import (
 
 toolkit_service = ToolkitService()
 
+
 def extract_video_id(video_url):
     query_string = urlparse(video_url).query
     parameters = parse_qs(query_string)
-    video_id = parameters.get('v', [None])[0]
+    video_id = parameters.get("v", [None])[0]
     return video_id
+
 
 def youtube_notes_generator(
     system_prompt: str, search_query: str, search_results: List[YoutubeSearchResult]
@@ -73,10 +75,13 @@ def youtube_page():
                     )
                     for notes in results_generator:
                         print("gen notes: ", notes)
-                        st.title(notes.title)
+                        st.header(notes.title)
                         video_id = extract_video_id(notes.video_url)
                         st_player(f"https://youtu.be/{video_id}")
+                        st.subheader("Processed content:")
                         st.markdown(notes.content)
+                        st.subheader("Raw content:")
+                        st.write(notes.raw_content)
                         st.markdown("---")
                 except Exception as e:
                     st.error(f"An error occurred: {e}")
@@ -92,10 +97,13 @@ def youtube_page():
                         system_prompt, user_query, search_results
                     )
                     for notes in notes_generator:
-                        st.title(notes.title)
+                        st.header(notes.title)
                         video_id = extract_video_id(notes.video_url)
                         st_player(f"https://youtu.be/{video_id}")
+                        st.subheader("Processed content:")
                         st.markdown(notes.content)
+                        st.subheader("Raw content:")
+                        st.write(notes.raw_content)
                         st.markdown("---")
                 except Exception as e:
                     st.error(f"An error occurred: {e}")

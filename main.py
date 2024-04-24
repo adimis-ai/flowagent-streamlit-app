@@ -1,6 +1,7 @@
 import streamlit as st
-from pages.youtube_notes import youtube_page
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def main_page():
     st.markdown("# Welcome to AI Notes Picker")

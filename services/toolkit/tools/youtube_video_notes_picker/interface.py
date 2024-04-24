@@ -7,6 +7,7 @@ class SubSectionResponse(BaseModel):
     title: str
     content: Optional[str]
     video_url: Optional[str]
+    raw_content: Optional[str]
 
 
 class YoutubeNotesPickerRequest(BaseModel):
