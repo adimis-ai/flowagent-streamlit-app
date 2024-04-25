@@ -5,13 +5,14 @@ from typing import List, Optional
 import google.generativeai as genai
 from .interface import GeminiLLMToolResponse
 import tiktoken
+import streamlit as st
 
 
 class GeminiLLM:
     def __init__(
         self,
         system_prompt: str,
-        api_key: Optional[str] = os.getenv("GOOGLE_API_KEY"),
+        api_key: Optional[str] = st.secrets("GOOGLE_API_KEY"),
         model: str = "gemini-1.0-pro",
         use_memory: bool = True,
         max_retries: int = 100,
