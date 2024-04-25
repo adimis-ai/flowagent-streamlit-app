@@ -11,7 +11,7 @@ class GeminiLLM:
     def __init__(
         self,
         system_prompt: str,
-        api_key: Optional[str] = "AIzaSyB9LivrePu3zdS1fg8UFLHxiqj0fZSvmFY",
+        api_key: Optional[str] = os.getenv("GOOGLE_API_KEY"),
         model: str = "gemini-1.0-pro",
         use_memory: bool = True,
         max_retries: int = 100,
